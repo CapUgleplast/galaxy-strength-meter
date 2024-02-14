@@ -1,26 +1,36 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-</template>
+<script setup lang="ts">
+import uiComponent from './components/TheWelcome.vue'
+import mainPhaser from "@/mainPhaser";
+import Phaser from "phaser";
+import {onMounted, reactive} from "vue";
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+const phaserVal = reactive({game: undefined as Phaser.Game})
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+onMounted(() => {
+  phaserVal.game = new Phaser.Game(mainPhaser)
+})
+
+const callPhaser = (val: string) => {
+  phaserVal.game.scene.getScenes(true)[0].events.emit(val)
 }
+
+
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<template>
+  <div class="wrapper">
+    <uiComponent class="ui"
+                 @phaserEvent="callPhaser" />
+    <div id="game"/>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.ui{
+  position: absolute;
+  aspect-ratio: 360 / 640;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
 }
 </style>
