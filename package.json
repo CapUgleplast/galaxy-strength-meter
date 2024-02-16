@@ -13,6 +13,7 @@
     "format": "prettier --write src"
   },
   "dependencies": {
+    "eslint-plugin-import": "^2.29.1",
     "phaser": "^3.70.0",
     "vue": "^3.4.15"
   },
