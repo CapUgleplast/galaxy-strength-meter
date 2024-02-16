@@ -1,7 +1,7 @@
 import Phaser from "phaser";
 
-import { preloadScene } from "@/scenes/PreloadScene.ts";
-import { mainScene } from "@/scenes/MainScene.ts";
+import { preloadScene } from "@/scenes/PreloadScene";
+import { mainScene } from "@/scenes/MainScene";
 import gameConfig from '@/assets/config/gameConfig.js'
 
 const config: Phaser.Types.Core.GameConfig = {
