@@ -41,15 +41,15 @@ export class Measure extends GameObjects.Container {
 
     reset(){
         const animSprite = this.getAt(1) as GameObjects.Sprite
-        animSprite.anims?.get('MeasureAnim')?.destroy()
+        animSprite.anims?.remove('MeasureAnim')
+        animSprite.anims?.play('MeasureAnim')?.off('animationcomplete')
         animSprite.alpha = 0
+
         const glow = this.getAt(2)?.getAt(0) as GameObjects.Sprite
         glow.alpha = 0
     }
 
     setPercentage(percent: number, callback?: Function){
-        this.reset()
-
         const animSprite = this.getAt(1) as GameObjects.Sprite
         const score= Math.ceil(percent * this.measureGradesAnim.length / 100)
 
@@ -59,7 +59,10 @@ export class Measure extends GameObjects.Container {
         }
 
         this.setAnimation(animSprite, score)
+
+        console.log(this)
         animSprite.alpha = 1
+
         animSprite.anims.play('MeasureAnim').on('animationcomplete', () => {
             if(score == this.measureGradesAnim.length){
                 const glow = this.getAt(2)?.getAt(0) as GameObjects.Sprite
@@ -68,6 +71,7 @@ export class Measure extends GameObjects.Container {
                     angle: -360,
                     ease: 'Linear',
                     duration: 10000,
+                    repeat: -1
                 })
                 glow.alpha = 1
                 console.log(score)
@@ -76,7 +80,7 @@ export class Measure extends GameObjects.Container {
             }
             console.log('falsss')
             callback?.(false)
-        })
 
+        })
     }
 }

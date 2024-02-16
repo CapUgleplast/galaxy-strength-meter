@@ -35,11 +35,6 @@ export class mainScene extends Scene {
 
         this.btn = new Button(this,config.width / 2, config.height / 2 + 142)
 
-        // const scale = new Scale(this,57, config.height - 102)
-
-        console.log(this.scene)
-        // this.game.events.emit('hehe')
-
         this.setEvents()
     }
 

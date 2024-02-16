@@ -38,7 +38,8 @@ const props = defineProps(['newGame', 'hit', 'text', 'showHit'])
     letter-spacing: 0px;
     text-align: center;
     color: white;
-    width: 142px;
+    white-space: pre-wrap;
+    width: 100%;
     margin-bottom: 13px;
   }
 

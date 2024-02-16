@@ -19,7 +19,7 @@
     default: 'Привет!\nпроверим твою силу!',
     prehit: 'Жми на кнопку\nв нужный момент!',
     fail: 'Неплохо!\nПопробуй ещё раз.',
-    success: 'ВОТ ЭТО СИЛА!\nТы выбил главный приз!\n<span style="color: red;">Рубин</span>'
+    success: 'ВОТ ЭТО СИЛА!\nТы выбил главный приз!\n<span style="color: #FF4646; font-weight: 700;">Рубин</span>'
   } as any
 
   const scaleValue = ref(0)
