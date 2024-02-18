@@ -45,7 +45,7 @@ export class Measure extends GameObjects.Container {
         animSprite.anims?.play('MeasureAnim')?.off('animationcomplete')
         animSprite.alpha = 0
 
-        const glow = this.getAt(2)?.getAt(0) as GameObjects.Sprite
+        const glow = (this.getAt(2) as GameObjects.Container)?.getAt(0) as GameObjects.Sprite
         glow.alpha = 0
     }
 
@@ -60,12 +60,11 @@ export class Measure extends GameObjects.Container {
 
         this.setAnimation(animSprite, score)
 
-        console.log(this)
         animSprite.alpha = 1
 
         animSprite.anims.play('MeasureAnim').on('animationcomplete', () => {
             if(score == this.measureGradesAnim.length){
-                const glow = this.getAt(2)?.getAt(0) as GameObjects.Sprite
+                const glow = (this.getAt(2) as GameObjects.Container)?.getAt(0) as GameObjects.Sprite
                 this.scene.tweens.add({
                     targets: glow,
                     angle: -360,
@@ -74,11 +73,9 @@ export class Measure extends GameObjects.Container {
                     repeat: -1
                 })
                 glow.alpha = 1
-                console.log(score)
                 callback?.(true)
                 return
             }
-            console.log('falsss')
             callback?.(false)
 
         })

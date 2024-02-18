@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import Scale from "./ScaleComponent.vue";
 
-  import type {PropType} from "vue";
+  import type {PropType, VueElement} from "vue";
   import {computed, onMounted, ref} from "vue";
   import RobotEmotions from "@/components/RobotEmotions.vue";
   import UserButtons from "@/components/UserButtons.vue";
@@ -24,7 +24,7 @@
 
   const scaleValue = ref(0)
   const loop = ref(undefined as number | undefined)
-
+  const scale = ref(null as any)
 
   const start = () => {
     loop.value = setInterval(() => {
@@ -48,8 +48,10 @@
     phaserEvent('new-game', undefined, 'playing')
   }
 
+
   const hit = () => {
     stop()
+    scaleValue.value = scale.value?.getFillerHeight()
     phaserEvent('hit', scaleValue.value*100, 'pending')
   }
 
@@ -95,8 +97,9 @@
 </script>
 
 <template>
-  <div class="wrapper">
-    <Scale  class="scale"
+  <div  class="wrapper">
+    <Scale  ref="scale"
+            class="scale"
             :value="scaleValue"
     />
 

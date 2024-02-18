@@ -62,7 +62,5 @@ export class preloadScene extends Scene {
 
     create(){
         this.scene.start('MainScene')
-
-        console.log('ff')
     }
 }

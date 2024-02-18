@@ -6,10 +6,18 @@ import {computed, ref, watch} from "vue";
 const props = defineProps(['value'])
 
 const body = ref(null as HTMLElement | null)
+const filler = ref(null as HTMLElement | null)
 
 const fillerHeight = computed(()=>{
      return props.value * (body?.value?.clientHeight || 0)
 })
+
+const getFillerHeight = () =>{
+    return (filler.value?.clientHeight || 0) / (body?.value?.clientHeight || 1)
+}
+
+defineExpose({getFillerHeight})
+
 </script>
 
 <template>
@@ -17,7 +25,8 @@ const fillerHeight = computed(()=>{
        class="scale"
        :style="`background-image: url(${scaleBack})`"
   >
-    <div class="filler"
+    <div ref="filler"
+         class="filler"
          :style="`height: ${fillerHeight}px`"
     >
       <div class="float"/>
